@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4e1b95e7-79b7-42fe-b40b-dac699127e79" name="Default Changelist" comment="" />
+    <list default="true" id="4e1b95e7-79b7-42fe-b40b-dac699127e79" name="Default Changelist" comment="resolve conflict">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.firstUnityProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.firstUnityProject/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/42A5878C-E129-4030-83AC-CCF18E43363F/22/6d2161d1/Vector3.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Arian/Documents/Game/firstUnityProject/Assets/scripts/PlayerController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Arian/Documents/Game/firstUnityProject/Assets/Scenes/Main.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Arian/Documents/Game/firstUnityProject/Assets/Scenes/Main.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Arian/Documents/Game/firstUnityProject/Assets/Scenes/Main.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Arian/Documents/Game/firstUnityProject/Assets/scripts/PlayerController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Arian/Documents/Game/firstUnityProject/Assets/scripts/PlayerController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Arian/Documents/Game/firstUnityProject/Assets/scripts/PlayerController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Arian/Documents/Game/firstUnityProject/Assets/scripts/PlayerController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Arian/Documents/Game/firstUnityProject/Assets/Scenes/Main.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Arian/Documents/Game/firstUnityProject/Assets/scripts/PlayerController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Arian/Documents/Game/firstUnityProject/Assets/scripts/PlayerController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Arian/Documents/Game/firstUnityProject/Assets/Scenes/Main.unity" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -64,52 +83,55 @@
       <updated>1631786459658</updated>
       <workItem from="1631786472058" duration="8813000" />
     </task>
+    <task id="LOCAL-00001" summary="resolve conflict">
+      <created>1631800361546</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1631800361546</updated>
+    </task>
+    <task id="LOCAL-00002" summary="resolve conflict">
+      <created>1631800456977</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1631800456977</updated>
+    </task>
+    <task id="LOCAL-00003" summary="resolve conflict">
+      <created>1631800503077</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1631800503077</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="false" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="resolve conflict" />
+    <option name="LAST_COMMIT_MESSAGE" value="resolve conflict" />
   </component>
-  <component name="WindowStateProjectService">
-    <state width="1877" height="375" key="GridCell.Tab.0.bottom" timestamp="1631789827675">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1631789827675" />
-    <state width="1877" height="375" key="GridCell.Tab.0.center" timestamp="1631789827675">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1631789827675" />
-    <state width="1877" height="375" key="GridCell.Tab.0.left" timestamp="1631789827675">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1631789827675" />
-    <state width="1877" height="375" key="GridCell.Tab.0.right" timestamp="1631789827675">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1631789827675" />
-    <state width="1877" height="375" key="GridCell.Tab.1.bottom" timestamp="1631789874303">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1631789874303" />
-    <state width="1877" height="375" key="GridCell.Tab.1.center" timestamp="1631789874303">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1631789874303" />
-    <state width="1877" height="375" key="GridCell.Tab.1.left" timestamp="1631789874303">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1631789874303" />
-    <state width="1877" height="375" key="GridCell.Tab.1.right" timestamp="1631789874303">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1631789874303" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1631793036787">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1631793036787" />
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
