@@ -19,11 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e1b95e7-79b7-42fe-b40b-dac699127e79" name="Default Changelist" comment="follow mouse position.">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.firstUnityProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.firstUnityProject/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/materials/New Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/materials/New Material.mat" afterDir="false" />
-    </list>
+    <list default="true" id="4e1b95e7-79b7-42fe-b40b-dac699127e79" name="Default Changelist" comment="resolve conflict" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,6 +29,13 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Z/work/unity/firstUnityProject/Assets/BattleRoyaleDuoPAPBR/Scene/MainScene.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Z/work/unity/firstUnityProject/Assets/BattleRoyaleDuoPAPBR/Scene/MainScene.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Z/work/unity/firstUnityProject/Assets/BattleRoyaleDuoPAPBR/Scene/MainScene.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Z/work/unity/firstUnityProject/Assets/BattleRoyaleDuoPAPBR/Scene/MainScene.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Z/work/unity/firstUnityProject/Assets/BattleRoyaleDuoPAPBR/Scene/MainScene.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Z/work/unity/firstUnityProject/Assets/BattleRoyaleDuoPAPBR.meta" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Z/work/unity/firstUnityProject/Assets/BattleRoyaleDuoPAPBR.meta" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/42A5878C-E129-4030-83AC-CCF18E43363F/22/6d2161d1/Vector3.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -86,7 +89,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1631786459658</updated>
-      <workItem from="1631786472058" duration="10066000" />
+      <workItem from="1631786472058" duration="11517000" />
     </task>
     <task id="LOCAL-00001" summary="follow mouse position.">
       <created>1631798055356</created>
@@ -95,7 +98,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631798055356</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="resolve conflict">
+      <created>1631803148293</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1631803148293</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,7 +127,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="follow mouse position." />
-    <option name="LAST_COMMIT_MESSAGE" value="follow mouse position." />
+    <MESSAGE value="resolve conflict" />
+    <option name="LAST_COMMIT_MESSAGE" value="resolve conflict" />
   </component>
   <component name="WindowStateProjectService">
     <state width="1877" height="375" key="GridCell.Tab.0.bottom" timestamp="1631789827675">
@@ -152,10 +163,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="375" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1631789874303" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1631798058159">
+    <state x="186" y="104" key="MergeDialog" timestamp="1631803130701">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1631798058159" />
+    <state x="186" y="104" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1631803130701" />
+    <state x="598" y="281" key="MultipleFileMergeDialog" timestamp="1631803131602">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="598" y="281" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1631803131602" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1631803149893">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1631803149893" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1631793036787">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
