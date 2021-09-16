@@ -1861,6 +1861,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 334236972399631067}
     m_Modifications:
+    - target: {fileID: 3823321262688718468, guid: e191308afba47004e917a3d044d0c0b1, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1220828769319070387, guid: 8a6f8cc972d0c474f8d4036b9b7c707c, type: 3}
     - target: {fileID: 3823321262691816068, guid: e191308afba47004e917a3d044d0c0b1, type: 3}
       propertyPath: m_Name
       value: PistolPolyart
@@ -1927,6 +1931,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 334236972399631067}
     m_Modifications:
+    - target: {fileID: 7775909171455001625, guid: 7b3294f08d0ff02459c627c1de9c3611, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 272717651244581583, guid: f0b4adf647c52ef4c8f9f23485bf1079, type: 3}
     - target: {fileID: 7775909171457901625, guid: 7b3294f08d0ff02459c627c1de9c3611, type: 3}
       propertyPath: m_RootOrder
       value: 3
