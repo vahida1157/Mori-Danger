@@ -7,7 +7,7 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="scripts" t="Include">
-          <e p="character_movement.cs" t="Include" />
+          <e p="PlayerController.cs" t="Include" />
         </e>
       </e>
       <e p="firstUnityProject.sln" t="IncludeFlat" />
