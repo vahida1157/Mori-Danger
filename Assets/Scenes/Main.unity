@@ -545,6 +545,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mori
       objectReference: {fileID: 0}
+    - target: {fileID: 1964751803204357685, guid: ce7041a2a6084f24f8d0053eddc9a342, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 272717651244581583, guid: f0b4adf647c52ef4c8f9f23485bf1079, type: 3}
     - target: {fileID: 1964751803207520821, guid: ce7041a2a6084f24f8d0053eddc9a342, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -553,6 +557,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9066123577764069053, guid: ce7041a2a6084f24f8d0053eddc9a342, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1220828769319070387, guid: 8a6f8cc972d0c474f8d4036b9b7c707c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce7041a2a6084f24f8d0053eddc9a342, type: 3}
 --- !u!1 &2094352682
