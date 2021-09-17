@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1844153818468624575}
   - component: {fileID: -6524883708334417927}
   m_Layer: 0
-  m_Name: Fire
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -247,3 +247,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e20a2ac22b5d446aa8d04fa062748a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletDamage: 100
