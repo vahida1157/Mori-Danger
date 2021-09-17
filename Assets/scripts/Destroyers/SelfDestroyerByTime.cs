@@ -5,16 +5,10 @@ namespace Destroyers
     public class SelfDestroyerByTime : MonoBehaviour
     {
         [SerializeField] private float threshold;
-        private float _time;
 
-        // Update is called once per frame
-        void Update()
+        private void Start()
         {
-            _time += Time.deltaTime;
-            if (_time > threshold)
-            {
-                Destroy(gameObject);
-            }
+            Destroy(gameObject, threshold);
         }
     }
-}
+}    

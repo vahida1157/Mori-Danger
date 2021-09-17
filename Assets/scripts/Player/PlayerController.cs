@@ -71,22 +71,25 @@ namespace Player
                 _moveVelocity = Vector3.zero;
                 return;
             }
-        
-            if (verticalAxisRaw == 0)
-            {
-                _moveInput = new Vector3(horizontalAxisRaw, 0f, 0f);
-                _moveVelocity = _moveInput * sideWayMoveSpeed;
-            }
-            else if (horizontalAxisRaw == 0)
-            {
-                _moveInput = new Vector3(0f, 0f, verticalAxisRaw);
-                _moveVelocity = _moveInput * forwardMoveSpeed;
-            }
-            else
-            {
-                _moveInput = new Vector3(horizontalAxisRaw, 0f, verticalAxisRaw);
-                _moveVelocity = new Vector3(_moveInput.x * sideWayMoveSpeed, 0f, _moveInput.z * forwardMoveSpeed);
-            }
+
+            _moveInput = new Vector3(horizontalAxisRaw, 0f, verticalAxisRaw);
+            _moveVelocity = _moveInput * forwardMoveSpeed;
+
+            // if (verticalAxisRaw == 0)
+            // {
+            //     _moveInput = new Vector3(horizontalAxisRaw, 0f, 0f);
+            //     _moveVelocity = _moveInput * sideWayMoveSpeed;
+            // }
+            // else if (horizontalAxisRaw == 0)
+            // {
+            //     _moveInput = new Vector3(0f, 0f, verticalAxisRaw);
+            //     _moveVelocity = _moveInput * forwardMoveSpeed;
+            // }
+            // else
+            // {
+            //     _moveInput = new Vector3(horizontalAxisRaw, 0f, verticalAxisRaw);
+            //     _moveVelocity = new Vector3(_moveInput.x * sideWayMoveSpeed, 0f, _moveInput.z * forwardMoveSpeed);
+            // }
         }
 
         private void AnimationControl(float horizontalAxisRaw, float verticalAxisRaw)
