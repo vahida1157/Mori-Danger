@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Utilities;
 
 namespace Fire
 {
@@ -15,6 +17,8 @@ namespace Fire
         // Update is called once per frame
         void Update()
         {
+            CameraUtils.LookAtMouseCursor(firePoint.transform);
+            
             if (Input.GetButton("Fire1"))
             {
                 _shotCounter -= Time.deltaTime;

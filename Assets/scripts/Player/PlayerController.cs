@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utilities;
 
 namespace Player
 {
@@ -48,15 +49,7 @@ namespace Player
 
         private void RotationControl()
         {
-            var cameraRay = _mainCamera.ScreenPointToRay(Input.mousePosition);
-
-            var groundPlane = new Plane(Vector3.up, Vector3.zero);
-
-            if (groundPlane.Raycast(cameraRay, out var rayLength))
-            {
-                var pointToLock = cameraRay.GetPoint(rayLength);
-                transform.LookAt(new Vector3(pointToLock.x, transform.position.y, pointToLock.z));
-            }
+            CameraUtils.LookAtMouseCursor(transform);
         }
 
         private void FixedUpdate()
