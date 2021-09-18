@@ -17,7 +17,7 @@ namespace Fire
         // Update is called once per frame
         void Update()
         {
-            CameraUtils.LookAtMouseCursor(firePoint.transform);
+            CameraUtils.LookAtMouseCursor(firePoint.transform, firePoint.position);
             
             if (Input.GetButton("Fire1"))
             {

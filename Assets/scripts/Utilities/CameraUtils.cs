@@ -29,5 +29,16 @@ namespace Utilities
                 transform.LookAt(new Vector3(pointToLock.x, transform.position.y, pointToLock.z));
             }
         }
+        
+        public static void LookAtMouseCursor(Transform transform, Vector3 planePoint) 
+        {
+            var groundPlane = new Plane(Vector3.up, planePoint);
+
+            if (groundPlane.Raycast(_cameraRay, out var rayLength))
+            {
+                var pointToLock = _cameraRay.GetPoint(rayLength);
+                transform.LookAt(new Vector3(pointToLock.x, transform.position.y, pointToLock.z));
+            }
+        }
     }
 }
