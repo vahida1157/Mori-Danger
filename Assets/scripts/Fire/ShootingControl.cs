@@ -1,10 +1,11 @@
 using System;
+using MLAPI;
 using UnityEngine;
 using Utilities;
 
 namespace Fire
 {
-    public class ShootingControl : MonoBehaviour
+    public class ShootingControl : NetworkBehaviour
     {
         [SerializeField] private float bulletForce;
         [SerializeField] private float shootingThreshold = 0.2f;
@@ -17,20 +18,23 @@ namespace Fire
         // Update is called once per frame
         void Update()
         {
-            CameraUtils.LookAtMouseCursor(firePoint.transform, firePoint.position);
-            
-            if (Input.GetButton("Fire1"))
+            if (IsLocalPlayer)
             {
-                _shotCounter -= Time.deltaTime;
-                if (_shotCounter <= 0)
+                CameraUtils.LookAtMouseCursor(firePoint.transform, firePoint.position);
+
+                if (Input.GetButton("Fire1"))
                 {
-                    _shotCounter = shootingThreshold;
-                    Shoot();
+                    _shotCounter -= Time.deltaTime;
+                    if (_shotCounter <= 0)
+                    {
+                        _shotCounter = shootingThreshold;
+                        Shoot();
+                    }
                 }
-            }
-            else
-            {
-                _shotCounter = 0;
+                else
+                {
+                    _shotCounter = 0;
+                }
             }
         }
 

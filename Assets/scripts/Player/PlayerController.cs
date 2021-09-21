@@ -1,10 +1,20 @@
 using UnityEngine;
 using Utilities;
+using UnityEngine.Networking;
+using MLAPI;
+using MLAPI.Messaging;
+using MLAPI.NetworkVariable;
 
 namespace Player
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : NetworkBehaviour
     {
+        // public NetworkVariableVector3 Velocity = new NetworkVariableVector3(new NetworkVariableSettings
+        // {
+        //     WritePermission = NetworkVariablePermission.ServerOnly,
+        //     ReadPermission = NetworkVariablePermission.Everyone
+        // });
+
         [SerializeField] private float forwardMoveSpeed;
         [SerializeField] private float sideWayMoveSpeed;
 
@@ -19,7 +29,7 @@ namespace Player
         private static readonly int RunningSideWay = Animator.StringToHash("runningSideWay");
 
         // Start is called before the first frame update
-        void Start()
+        public override void NetworkStart()
         {
             _rigidBody = GetComponent<Rigidbody>();
             _animator = GetComponent<Animator>();
@@ -29,17 +39,20 @@ namespace Player
         // Update is called once per frame
         void Update()
         {
-            var horizontalAxisRaw = Input.GetAxisRaw("Horizontal");
-            var verticalAxisRaw = Input.GetAxisRaw("Vertical");
-            var leftClicked = Input.GetButton("Fire1");
+            if (IsLocalPlayer)
+            {
+                var horizontalAxisRaw = Input.GetAxisRaw("Horizontal");
+                var verticalAxisRaw = Input.GetAxisRaw("Vertical");
+                var leftClicked = Input.GetButton("Fire1");
 
-            AnimationControl(horizontalAxisRaw, verticalAxisRaw);
+                AnimationControl(horizontalAxisRaw, verticalAxisRaw);
 
-            MovementControl(horizontalAxisRaw, verticalAxisRaw);
+                MovementControl(horizontalAxisRaw, verticalAxisRaw);
 
-            RotationControl();
+                RotationControl();
 
-            ShootingControl(leftClicked);
+                ShootingControl(leftClicked);
+            }
         }
 
         private void ShootingControl(bool leftClicked)
@@ -57,7 +70,7 @@ namespace Player
             _rigidBody.velocity = _moveVelocity;
         }
 
-        private void MovementControl(float horizontalAxisRaw, float verticalAxisRaw)
+        public void MovementControl(float horizontalAxisRaw, float verticalAxisRaw)
         {
             if (horizontalAxisRaw == 0 && verticalAxisRaw == 0)
             {
