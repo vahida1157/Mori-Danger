@@ -504,9 +504,10 @@ GameObject:
   - component: {fileID: 8180287023054532296}
   - component: {fileID: 8180287023054532297}
   - component: {fileID: 1011824807904652393}
+  - component: {fileID: 8453612988009363848}
   - component: {fileID: 4252691090803467589}
   - component: {fileID: 8368623487429817682}
-  - component: {fileID: 8453612988009363848}
+  - component: {fileID: 1472579887169033477}
   m_Layer: 0
   m_Name: Mori
   m_TagString: Player
@@ -594,6 +595,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cccb235a8d6932844866940e86f4502f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8453612988009363848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7635225921260628055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce12147246f094e4c94701b0908ab8b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletForce: 10
+  shootingThreshold: 0.2
+  firePoint: {fileID: 7878686103979554897}
+  bulletPrefab: {fileID: 5621585288707057407, guid: 067d5f135492a544494426f04506e28c, type: 3}
 --- !u!114 &4252691090803467589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -659,7 +676,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8453612988009363848
+--- !u!114 &1472579887169033477
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -668,13 +685,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7635225921260628055}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce12147246f094e4c94701b0908ab8b7, type: 3}
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletForce: 10
-  shootingThreshold: 0.2
-  firePoint: {fileID: 7878686103979554897}
-  bulletPrefab: {fileID: 5621585288707057407, guid: 067d5f135492a544494426f04506e28c, type: 3}
+  SendRate: 0.1
+  m_Animator: {fileID: 7635225921260628054}
+  m_TrackedParamFlags: 7
 --- !u!1 &7635225921314871996
 GameObject:
   m_ObjectHideFlags: 0
@@ -2019,7 +2035,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7878686103979554897}
-  - component: {fileID: 7878686103979554896}
   m_Layer: 0
   m_Name: Fire Point
   m_TagString: Untagged
@@ -2041,22 +2056,6 @@ Transform:
   m_Father: {fileID: 1191167022769276734}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7878686103979554896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7878686103979554902}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce12147246f094e4c94701b0908ab8b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletForce: 10
-  shootingThreshold: 0.2
-  firePoint: {fileID: 7878686103979554897}
-  bulletPrefab: {fileID: 5621585288707057407, guid: 067d5f135492a544494426f04506e28c, type: 3}
 --- !u!1001 &2160338240396571535
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System;
 using MLAPI;
+using MLAPI.Messaging;
 using UnityEngine;
 using Utilities;
 
@@ -40,7 +41,24 @@ namespace Fire
 
         private void Shoot()
         {
+            if (IsServer)
+            {
+                var bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+                bullet.GetComponent<NetworkObject>().Spawn();
+                var bulletRigidBody = bullet.GetComponent<Rigidbody>();
+                bulletRigidBody.AddForce(firePoint.forward * bulletForce, ForceMode.Impulse);
+            }
+            else
+            {
+                SpawnBulletServerRpc();
+            }
+        }
+        
+        [ServerRpc] 
+        public void SpawnBulletServerRpc()
+        {
             var bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            bullet.GetComponent<NetworkObject>().Spawn();
             var bulletRigidBody = bullet.GetComponent<Rigidbody>();
             bulletRigidBody.AddForce(firePoint.forward * bulletForce, ForceMode.Impulse);
         }

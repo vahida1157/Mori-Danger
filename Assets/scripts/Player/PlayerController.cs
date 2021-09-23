@@ -9,11 +9,11 @@ namespace Player
 {
     public class PlayerController : NetworkBehaviour
     {
-        // public NetworkVariableVector3 Velocity = new NetworkVariableVector3(new NetworkVariableSettings
-        // {
-        //     WritePermission = NetworkVariablePermission.ServerOnly,
-        //     ReadPermission = NetworkVariablePermission.Everyone
-        // });
+        public NetworkVariableBool networkLeftClicked = new NetworkVariableBool(new NetworkVariableSettings
+        {
+            WritePermission = NetworkVariablePermission.Everyone,
+            ReadPermission = NetworkVariablePermission.Everyone
+        });
 
         [SerializeField] private float forwardMoveSpeed;
         [SerializeField] private float sideWayMoveSpeed;
@@ -31,6 +31,7 @@ namespace Player
         // Start is called before the first frame update
         public override void NetworkStart()
         {
+            networkLeftClicked.Value = false;
             _rigidBody = GetComponent<Rigidbody>();
             _animator = GetComponent<Animator>();
             _mainCamera = FindObjectOfType<Camera>();
@@ -50,14 +51,24 @@ namespace Player
                 MovementControl(horizontalAxisRaw, verticalAxisRaw);
 
                 RotationControl();
-
-                ShootingControl(leftClicked);
+                
+                if (IsServer)
+                {
+                    networkLeftClicked.Value = leftClicked;
+                }
+                else
+                {
+                    ShootingControlServerRpc(leftClicked);
+                }
             }
+            
+            _animator.SetLayerWeight(1, networkLeftClicked.Value ? 1 : 0);
         }
 
-        private void ShootingControl(bool leftClicked)
+        [ServerRpc]
+        private void ShootingControlServerRpc(bool leftClicked)
         {
-            _animator.SetLayerWeight(1, leftClicked ? 1 : 0);
+            networkLeftClicked.Value = leftClicked;
         }
 
         private void RotationControl()
