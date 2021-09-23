@@ -7,18 +7,18 @@ namespace Player
 {
     public class MoriNetworkManager : MonoBehaviour
     {
-        private void Update()
-        {
-            if (NetworkManager.Singleton.ConnectedClients.TryGetValue(NetworkManager.Singleton.LocalClientId,
-                        out var networkedClient))
-            {
-                var player = networkedClient.PlayerObject.GetComponent<PlayerController>();
-                if (player)
-                {
-                    player.MovementControl(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-                }
-            }
-        }
+        // private void Update()
+        // {
+        //     if (NetworkManager.Singleton.ConnectedClients.TryGetValue(NetworkManager.Singleton.LocalClientId,
+        //                 out var networkedClient))
+        //     {
+        //         var player = networkedClient.PlayerObject.GetComponent<PlayerController>();
+        //         if (player)
+        //         {
+        //             player.MovementControl(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        //         }
+        //     }
+        // }
         void OnGUI()
         {
             GUILayout.BeginArea(new Rect(10, 10, 300, 300));

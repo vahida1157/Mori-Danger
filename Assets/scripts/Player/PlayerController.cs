@@ -11,7 +11,7 @@ namespace Player
     {
         public NetworkVariableBool networkLeftClicked = new NetworkVariableBool(new NetworkVariableSettings
         {
-            WritePermission = NetworkVariablePermission.Everyone,
+            WritePermission = NetworkVariablePermission.ServerOnly,
             ReadPermission = NetworkVariablePermission.Everyone
         });
 
