@@ -9,13 +9,14 @@ namespace Bullet
         [SerializeField] private float bulletDamage;
         private void OnCollisionEnter(Collision other)
         {
+            Debug.Log("collided");
             var rigidBody = other.collider.GetComponentInParent<Rigidbody>();
             if (rigidBody.tag.Equals("Player"))
             {
                 rigidBody.GetComponent<PlayerHealth>().TakeDamage(bulletDamage);
             }
 
-            Destroy(gameObject);
+            GetComponent<NetworkObject>().Despawn(true);
         }
     }
 }
