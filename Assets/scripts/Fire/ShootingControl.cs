@@ -21,7 +21,7 @@ namespace Fire
         {
             if (IsLocalPlayer)
             {
-                CameraUtils.LookAtMouseCursor(firePoint.transform, firePoint.position);
+                // CameraUtils.LookAtMouseCursor(firePoint.transform, firePoint.position);
 
                 if (Input.GetButton("Fire1"))
                 {

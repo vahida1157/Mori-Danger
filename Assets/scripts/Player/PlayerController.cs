@@ -1,9 +1,8 @@
-using UnityEngine;
-using Utilities;
-using UnityEngine.Networking;
 using MLAPI;
 using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
+using UnityEngine;
+using Utilities;
 
 namespace Player
 {
@@ -18,8 +17,9 @@ namespace Player
         [SerializeField] private float forwardMoveSpeed;
         [SerializeField] private float sideWayMoveSpeed;
 
+        [SerializeField] private Transform firePoint;
+        [SerializeField] private Transform helperPoint;
         private Rigidbody _rigidBody;
-        private Camera _mainCamera;
 
         private Vector3 _moveInput;
         private Vector3 _moveVelocity;
@@ -34,7 +34,6 @@ namespace Player
             networkLeftClicked.Value = false;
             _rigidBody = GetComponent<Rigidbody>();
             _animator = GetComponent<Animator>();
-            _mainCamera = FindObjectOfType<Camera>();
         }
 
         // Update is called once per frame
@@ -51,7 +50,7 @@ namespace Player
                 MovementControl(horizontalAxisRaw, verticalAxisRaw);
 
                 RotationControl();
-                
+
                 if (IsServer)
                 {
                     networkLeftClicked.Value = leftClicked;
@@ -61,7 +60,7 @@ namespace Player
                     ShootingControlServerRpc(leftClicked);
                 }
             }
-            
+
             _animator.SetLayerWeight(1, networkLeftClicked.Value ? 1 : 0);
         }
 
@@ -73,7 +72,30 @@ namespace Player
 
         private void RotationControl()
         {
-            CameraUtils.LookAtMouseCursor(transform);
+            CameraUtils.PlayerLookAtMouseCursor(transform);
+            // AddOffsetRotation();
+        }
+
+        private void AddOffsetRotation()
+        {
+            var position = transform.position;
+            var firePointPosition = firePoint.position;
+            var localMousePosition = CameraUtils.getInGameMousePosition(new Plane(Vector3.up, firePointPosition));
+
+            var distance = Vector3.Distance(new Vector3(position.x, firePointPosition.y, position.z),
+                new Vector3(localMousePosition.x, firePointPosition.y, localMousePosition.z));
+            var height = helperPoint.localPosition.z - transform.localPosition.z;
+            var wPosition = transform.TransformPoint(position.x, position.y, height);
+            var angle = Mathf.Atan(height / distance);
+            Debug.Log("height : " + height + "\tdistance : " + distance + "\tdegree : " + angle);
+            Debug.DrawLine(new Vector3(position.x, firePointPosition.y, position.z),
+                new Vector3(localMousePosition.x, firePointPosition.y, localMousePosition.z), Color.red);
+            Debug.DrawLine(helperPoint.position,
+                firePointPosition, Color.green);
+            if (Input.GetKey("space"))
+            {
+                gameObject.transform.Rotate(Vector3.up, angle);
+            }
         }
 
         private void FixedUpdate()

@@ -14,6 +14,7 @@ namespace Bullet
             {
                 rigidBody.GetComponent<PlayerHealth>().TakeDamage(bulletDamage);
             }
+
             Destroy(gameObject);
         }
     }
