@@ -714,8 +714,8 @@ GameObject:
   - component: {fileID: 8453612988009363848}
   - component: {fileID: 4252691090803467589}
   - component: {fileID: 8368623487429817682}
-  - component: {fileID: 1472579887169033477}
   - component: {fileID: 2962985423113871571}
+  - component: {fileID: 4311202390453581643}
   m_Layer: 0
   m_Name: Mori
   m_TagString: Player
@@ -888,21 +888,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1472579887169033477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7635225921260628055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SendRate: 0.1
-  m_Animator: {fileID: 7635225921260628054}
-  m_TrackedParamFlags: 31
 --- !u!114 &2962985423113871571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -918,6 +903,21 @@ MonoBehaviour:
   playerUsername: {fileID: 5741619423955041837}
   networkUsername:
     m_InternalValue: 
+--- !u!114 &4311202390453581643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7635225921260628055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SendRate: 0.1
+  m_Animator: {fileID: 7635225921260628054}
+  m_TrackedParamFlags: 31
 --- !u!1 &7635225921314871996
 GameObject:
   m_ObjectHideFlags: 0

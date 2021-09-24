@@ -10,11 +10,12 @@ namespace Player
         private float _currentHealth;
         private bool _isDead = false;
         private bool _gotShot;
-        private Animator _animator;
         private static readonly int IsDead = Animator.StringToHash("isDead");
         private static readonly int GotShot = Animator.StringToHash("gotShot");
 
-        private void Start()
+        private Animator _animator;
+        
+        public override void NetworkStart()
         {
             _currentHealth = MAXHealth;
             _gotShot = false;
@@ -37,7 +38,7 @@ namespace Player
                 _animator.SetBool(IsDead, _isDead);
                 // Destroy(gameObject);
             }
-            else
+            if (!_isDead)
             {
                 _gotShot = true;
                 _animator.SetBool(GotShot, _gotShot);
