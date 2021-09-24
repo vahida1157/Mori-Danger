@@ -38,29 +38,32 @@ namespace Player
         // Update is called once per frame
         void Update()
         {
-            if (IsLocalPlayer)
+            if (!GetComponent<PlayerHealth>().IsPlayerDead())
             {
-                var horizontalAxisRaw = Input.GetAxisRaw("Horizontal");
-                var verticalAxisRaw = Input.GetAxisRaw("Vertical");
-                var leftClicked = Input.GetButton("Fire1");
-
-                AnimationControl(horizontalAxisRaw, verticalAxisRaw);
-
-                MovementControl(horizontalAxisRaw, verticalAxisRaw);
-
-                RotationControl();
-
-                if (IsServer)
+                if (IsLocalPlayer)
                 {
-                    networkLeftClicked.Value = leftClicked;
+                    var horizontalAxisRaw = Input.GetAxisRaw("Horizontal");
+                    var verticalAxisRaw = Input.GetAxisRaw("Vertical");
+                    var leftClicked = Input.GetButton("Fire1");
+
+                    AnimationControl(horizontalAxisRaw, verticalAxisRaw);
+
+                    MovementControl(horizontalAxisRaw, verticalAxisRaw);
+
+                    RotationControl();
+
+                    if (IsServer)
+                    {
+                        networkLeftClicked.Value = leftClicked;
+                    }
+                    else
+                    {
+                        ShootingControlServerRpc(leftClicked);
+                    }
                 }
-                else
-                {
-                    ShootingControlServerRpc(leftClicked);
-                }
+
+                _animator.SetLayerWeight(1, networkLeftClicked.Value ? 1 : 0);
             }
-
-            _animator.SetLayerWeight(1, networkLeftClicked.Value ? 1 : 0);
         }
 
         [ServerRpc]
