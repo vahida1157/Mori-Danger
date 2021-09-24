@@ -7,6 +7,8 @@ namespace Player
 {
     public class MoriNetworkManager : MonoBehaviour
     {
+        public static string username = "username";
+
         // private void Update()
         // {
         //     if (NetworkManager.Singleton.ConnectedClients.TryGetValue(NetworkManager.Singleton.LocalClientId,
@@ -38,6 +40,7 @@ namespace Player
 
         static void StartButtons()
         {
+            username = GUILayout.TextField(username, 40);
             if (GUILayout.Button("Host")) NetworkManager.Singleton.StartHost();
             if (GUILayout.Button("Client")) NetworkManager.Singleton.StartClient();
             if (GUILayout.Button("Server")) NetworkManager.Singleton.StartServer();
@@ -45,11 +48,12 @@ namespace Player
 
         static void StatusLabels()
         {
-            var mode = NetworkManager.Singleton.IsHost ?
-                "Host" : NetworkManager.Singleton.IsServer ? "Server" : "Client";
+            var mode = NetworkManager.Singleton.IsHost ? "Host" :
+                NetworkManager.Singleton.IsServer ? "Server" : "Client";
 
+            GUILayout.Label("Username: " + username);
             GUILayout.Label("Transport: " +
-                NetworkManager.Singleton.NetworkConfig.NetworkTransport.GetType().Name);
+                            NetworkManager.Singleton.NetworkConfig.NetworkTransport.GetType().Name);
             GUILayout.Label("Mode: " + mode);
         }
 
@@ -68,6 +72,5 @@ namespace Player
         //         }
         //     }
         // }
-
     }
 }
