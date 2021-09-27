@@ -58,7 +58,7 @@ namespace Fire
         public void SpawnBulletServerRpc()
         {
             var bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            bullet.GetComponent<NetworkObject>().SpawnWithOwnership(NetworkManager.Singleton.LocalClientId);
+            bullet.GetComponent<NetworkObject>().Spawn();
             var bulletRigidBody = bullet.GetComponent<Rigidbody>();
             bulletRigidBody.AddForce(firePoint.forward * bulletForce, ForceMode.Impulse);
         }

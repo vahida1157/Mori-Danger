@@ -1,3 +1,5 @@
+using System;
+using Bullet;
 using MLAPI;
 using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
@@ -8,12 +10,6 @@ namespace Player
 {
     public class PlayerController : NetworkBehaviour
     {
-        public NetworkVariableBool networkLeftClicked = new NetworkVariableBool(new NetworkVariableSettings
-        {
-            WritePermission = NetworkVariablePermission.ServerOnly,
-            ReadPermission = NetworkVariablePermission.Everyone
-        });
-
         [SerializeField] private float forwardMoveSpeed;
         [SerializeField] private float sideWayMoveSpeed;
 
@@ -30,7 +26,6 @@ namespace Player
         // Start is called before the first frame update
         public override void NetworkStart()
         {
-            networkLeftClicked.Value = false;
             _rigidBody = GetComponent<Rigidbody>();
             _animator = GetComponent<Animator>();
         }
@@ -38,7 +33,7 @@ namespace Player
         // Update is called once per frame
         void Update()
         {
-            if (!GetComponent<PlayerHealth>().IsPlayerDead())
+            if (GetComponent<PlayerHealth>().GetCurrentHealth() > 0)
             {
                 if (IsLocalPlayer)
                 {
@@ -46,30 +41,33 @@ namespace Player
                     var verticalAxisRaw = Input.GetAxisRaw("Vertical");
                     var leftClicked = Input.GetButton("Fire1");
 
-                    AnimationControl(horizontalAxisRaw, verticalAxisRaw);
+                    AnimationControl(horizontalAxisRaw, verticalAxisRaw, leftClicked);
 
                     MovementControl(horizontalAxisRaw, verticalAxisRaw);
 
                     RotationControl();
-
-                    if (IsServer)
-                    {
-                        networkLeftClicked.Value = leftClicked;
-                    }
-                    else
-                    {
-                        ShootingControlServerRpc(leftClicked);
-                    }
                 }
-
-                _animator.SetLayerWeight(1, networkLeftClicked.Value ? 1 : 0);
+            } else if (!GetComponent<PlayerHealth>().dead)
+            {
+                PlayerDeath();
             }
         }
 
-        [ServerRpc]
-        private void ShootingControlServerRpc(bool leftClicked)
+        void PlayerDeath()
         {
-            networkLeftClicked.Value = leftClicked;
+            GetComponent<PlayerHealth>().dead = true;
+            _animator.SetBool("Dead", true);
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            Debug.Log("collided");
+            if (other.collider.tag.Equals("Bullet"))
+            {
+                _animator.SetTrigger("Hit");
+                GetComponent<PlayerHealth>()
+                        .TakeDamage(other.gameObject.GetComponent<BulletController>().bulletDamage);
+            }
         }
 
         private void RotationControl()
@@ -133,36 +131,41 @@ namespace Player
             // }
         }
 
-        private void AnimationControl(float horizontalAxisRaw, float verticalAxisRaw)
+        private void AnimationControl(float horizontalAxisRaw, float verticalAxisRaw, bool leftClicked)
         {
-            if (horizontalAxisRaw == 0 && verticalAxisRaw == 0)
-            {
-                _animator.SetInteger(RunningFwd, 0);
-                _animator.SetInteger(RunningSideWay, 0);
-            }
-            else if (verticalAxisRaw == 0)
-            {
-                if (horizontalAxisRaw > 0)
-                {
-                    _animator.SetInteger(RunningFwd, 0);
-                    _animator.SetInteger(RunningSideWay, 1);
-                }
-                else
-                {
-                    _animator.SetInteger(RunningFwd, 0);
-                    _animator.SetInteger(RunningSideWay, -1);
-                }
-            }
-            else if (verticalAxisRaw > 0)
-            {
-                _animator.SetInteger(RunningFwd, 1);
-                _animator.SetInteger(RunningSideWay, 0);
-            }
-            else if (verticalAxisRaw < 0)
-            {
-                _animator.SetInteger(RunningFwd, -1);
-                _animator.SetInteger(RunningSideWay, 0);
-            }
+            _animator.SetFloat("Horizontal", horizontalAxisRaw);
+            _animator.SetFloat("Vertical", verticalAxisRaw);
+            _animator.SetBool("Moving", horizontalAxisRaw != 0f || verticalAxisRaw != 0f);
+            _animator.SetBool("Shooting", leftClicked);
+
+            // if (horizontalAxisRaw == 0 && verticalAxisRaw == 0)
+            // {
+            //     _animator.SetInteger(RunningFwd, 0);
+            //     _animator.SetInteger(RunningSideWay, 0);
+            // }
+            // else if (verticalAxisRaw == 0)
+            // {
+            //     if (horizontalAxisRaw > 0)
+            //     {
+            //         _animator.SetInteger(RunningFwd, 0);
+            //         _animator.SetInteger(RunningSideWay, 1);
+            //     }
+            //     else
+            //     {
+            //         _animator.SetInteger(RunningFwd, 0);
+            //         _animator.SetInteger(RunningSideWay, -1);
+            //     }
+            // }
+            // else if (verticalAxisRaw > 0)
+            // {
+            //     _animator.SetInteger(RunningFwd, 1);
+            //     _animator.SetInteger(RunningSideWay, 0);
+            // }
+            // else if (verticalAxisRaw < 0)
+            // {
+            //     _animator.SetInteger(RunningFwd, -1);
+            //     _animator.SetInteger(RunningSideWay, 0);
+            // }
         }
     }
 }

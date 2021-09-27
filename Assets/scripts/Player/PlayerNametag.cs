@@ -10,6 +10,7 @@ namespace Player
     public class PlayerNametag : NetworkBehaviour
     {
         [SerializeField] public Text playerUsername;
+        [SerializeField] public Text playerHealth;
 
         public NetworkVariableString networkUsername = new NetworkVariableString(new NetworkVariableSettings()
         {
@@ -31,6 +32,7 @@ namespace Player
                 }
             }
 
+            playerHealth.text = gameObject.GetComponent<PlayerHealth>().GetCurrentHealth().ToString();
             playerUsername.text = networkUsername.Value;
         }
 

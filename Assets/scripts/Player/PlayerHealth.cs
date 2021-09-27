@@ -1,6 +1,8 @@
 using System;
 using MLAPI;
+using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
+using MLAPI.Spawning;
 using UnityEngine;
 
 namespace Player
@@ -8,57 +10,41 @@ namespace Player
     public class PlayerHealth : NetworkBehaviour
     {
         private const float MAXHealth = 300;
-        private float _currentHealth;
-        private NetworkVariableBool _isDead = new NetworkVariableBool(new NetworkVariableSettings()
-        {
-            ReadPermission = NetworkVariablePermission.Everyone,
-            WritePermission = NetworkVariablePermission.Everyone,
-        });
-        private NetworkVariableBool _gotShot = new NetworkVariableBool(new NetworkVariableSettings()
-        {
-            ReadPermission = NetworkVariablePermission.Everyone,
-            WritePermission = NetworkVariablePermission.Everyone,
-        });
-        private static readonly int IsDead = Animator.StringToHash("isDead");
-        private static readonly int GotShot = Animator.StringToHash("gotShot");
+        public bool dead = false;
 
-        private Animator _animator;
+        private NetworkVariableFloat _currentHealth = new NetworkVariableFloat(new NetworkVariableSettings()
+        {
+            ReadPermission = NetworkVariablePermission.Everyone,
+            WritePermission = NetworkVariablePermission.ServerOnly,            
+        });
         
         public override void NetworkStart()
         {
-            _currentHealth = MAXHealth;
-            _gotShot.Value = false;
-            _animator = GetComponent<Animator>();
+            _currentHealth.Value = MAXHealth;
         }
-
-        public void SetShotToFalse()
-        {
-            _gotShot.Value = false;
-            _animator.SetBool(GotShot, _gotShot.Value);
-        }
-
+        
         public void TakeDamage(float damageCount)
         {
-            Debug.Log("took damage, isDead: " + _isDead.Value);
-            _currentHealth -= damageCount;
-
-            if (_currentHealth <= 0 && !_isDead.Value)
+            if (IsServer)
             {
-                _isDead.Value = true;
-                _animator.SetBool(IsDead, _isDead.Value);
-                // Destroy(gameObject);
+                _currentHealth.Value -= damageCount;
             }
-            if (!_isDead.Value)
+            else
             {
-                _gotShot.Value = true;
-                _animator.SetBool(GotShot, _gotShot.Value);
+                TakeDamageServerRpc(damageCount);
             }
-            Debug.Log("took damage 2, isDead: " + _isDead.Value);
         }
 
-        public bool IsPlayerDead()
+        [ServerRpc]
+        private void TakeDamageServerRpc(float damageCount)
         {
-            return _isDead.Value;
+            _currentHealth.Value -= damageCount;
         }
+
+        public float GetCurrentHealth()
+        {
+            return _currentHealth.Value;
+        }
+
     }
 }
