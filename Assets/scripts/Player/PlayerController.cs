@@ -1,8 +1,5 @@
-using System;
 using Bullet;
 using MLAPI;
-using MLAPI.Messaging;
-using MLAPI.NetworkVariable;
 using UnityEngine;
 using Utilities;
 
@@ -11,29 +8,30 @@ namespace Player
     public class PlayerController : NetworkBehaviour
     {
         [SerializeField] private float forwardMoveSpeed;
-        [SerializeField] private float sideWayMoveSpeed;
 
-        [SerializeField] private Transform firePoint;
         private Rigidbody _rigidBody;
+        private PlayerHealth _playerHealth;
 
-        private Vector3 _moveInput;
         private Vector3 _moveVelocity;
 
         private Animator _animator;
-        private static readonly int RunningFwd = Animator.StringToHash("runningFwd");
-        private static readonly int RunningSideWay = Animator.StringToHash("runningSideWay");
+        private static readonly int Hit = Animator.StringToHash("Hit");
+        private static readonly int Dead = Animator.StringToHash("Dead");
+        private static readonly int Horizontal = Animator.StringToHash("Horizontal");
+        private static readonly int Vertical = Animator.StringToHash("Vertical");
+        private static readonly int Moving = Animator.StringToHash("Moving");
+        private static readonly int Shooting = Animator.StringToHash("Shooting");
 
-        // Start is called before the first frame update
         public override void NetworkStart()
         {
             _rigidBody = GetComponent<Rigidbody>();
             _animator = GetComponent<Animator>();
+            _playerHealth = GetComponent<PlayerHealth>();
         }
 
-        // Update is called once per frame
-        void Update()
+        private void Update()
         {
-            if (GetComponent<PlayerHealth>().GetCurrentHealth() > 0)
+            if (_playerHealth.GetCurrentHealth() > 0)
             {
                 if (IsLocalPlayer)
                 {
@@ -47,16 +45,25 @@ namespace Player
 
                     RotationControl();
                 }
-            } else if (!GetComponent<PlayerHealth>().dead)
+            }
+            else if (!_playerHealth.dead)
             {
+                ResetValues();
                 PlayerDeath();
             }
         }
 
-        void PlayerDeath()
+        private void ResetValues()
         {
-            GetComponent<PlayerHealth>().dead = true;
-            _animator.SetBool("Dead", true);
+            _moveVelocity = Vector3.zero;
+            _animator.SetBool(Moving, false);
+            _animator.SetBool(Shooting, false);
+        }
+
+        private void PlayerDeath()
+        {
+            _playerHealth.dead = true;
+            _animator.SetBool(Dead, true);
         }
 
         private void OnCollisionEnter(Collision other)
@@ -64,46 +71,24 @@ namespace Player
             Debug.Log("collided");
             if (other.collider.tag.Equals("Bullet"))
             {
-                _animator.SetTrigger("Hit");
+                _animator.SetTrigger(Hit);
                 GetComponent<PlayerHealth>()
-                        .TakeDamage(other.gameObject.GetComponent<BulletController>().bulletDamage);
+                    .TakeDamage(other.gameObject.GetComponent<BulletController>().bulletDamage);
             }
         }
 
         private void RotationControl()
         {
             CameraUtils.PlayerLookAtMouseCursor(transform);
-            // AddOffsetRotation();
         }
 
-        // private void AddOffsetRotation()
-        // {
-        //     var position = transform.position;
-        //     var firePointPosition = firePoint.position;
-        //     var localMousePosition = CameraUtils.getInGameMousePosition(new Plane(Vector3.up, firePointPosition));
-        //
-        //     var distance = Vector3.Distance(new Vector3(position.x, firePointPosition.y, position.z),
-        //         new Vector3(localMousePosition.x, firePointPosition.y, localMousePosition.z));
-        //     var height = helperPoint.localPosition.z - transform.localPosition.z;
-        //     var wPosition = transform.TransformPoint(position.x, position.y, height);
-        //     var angle = Mathf.Atan(height / distance);
-        //     Debug.Log("height : " + height + "\tdistance : " + distance + "\tdegree : " + angle);
-        //     Debug.DrawLine(new Vector3(position.x, firePointPosition.y, position.z),
-        //         new Vector3(localMousePosition.x, firePointPosition.y, localMousePosition.z), Color.red);
-        //     Debug.DrawLine(helperPoint.position,
-        //         firePointPosition, Color.green);
-        //     if (Input.GetKey("space"))
-        //     {
-        //         gameObject.transform.Rotate(Vector3.up, angle);
-        //     }
-        // }
 
         private void FixedUpdate()
         {
             _rigidBody.velocity = _moveVelocity;
         }
 
-        public void MovementControl(float horizontalAxisRaw, float verticalAxisRaw)
+        private void MovementControl(float horizontalAxisRaw, float verticalAxisRaw)
         {
             if (horizontalAxisRaw == 0 && verticalAxisRaw == 0)
             {
@@ -111,61 +96,20 @@ namespace Player
                 return;
             }
 
-            _moveInput = new Vector3(horizontalAxisRaw, 0f, verticalAxisRaw);
-            _moveVelocity = _moveInput * forwardMoveSpeed;
-
-            // if (verticalAxisRaw == 0)
-            // {
-            //     _moveInput = new Vector3(horizontalAxisRaw, 0f, 0f);
-            //     _moveVelocity = _moveInput * sideWayMoveSpeed;
-            // }
-            // else if (horizontalAxisRaw == 0)
-            // {
-            //     _moveInput = new Vector3(0f, 0f, verticalAxisRaw);
-            //     _moveVelocity = _moveInput * forwardMoveSpeed;
-            // }
-            // else
-            // {
-            //     _moveInput = new Vector3(horizontalAxisRaw, 0f, verticalAxisRaw);
-            //     _moveVelocity = new Vector3(_moveInput.x * sideWayMoveSpeed, 0f, _moveInput.z * forwardMoveSpeed);
-            // }
+            var moveInput = new Vector3(horizontalAxisRaw, 0f, verticalAxisRaw);
+            _moveVelocity = moveInput * forwardMoveSpeed;
         }
 
         private void AnimationControl(float horizontalAxisRaw, float verticalAxisRaw, bool leftClicked)
         {
-            _animator.SetFloat("Horizontal", horizontalAxisRaw);
-            _animator.SetFloat("Vertical", verticalAxisRaw);
-            _animator.SetBool("Moving", horizontalAxisRaw != 0f || verticalAxisRaw != 0f);
-            _animator.SetBool("Shooting", leftClicked);
+            _animator.SetBool(Moving, horizontalAxisRaw != 0f || verticalAxisRaw != 0f);
+            if (horizontalAxisRaw != 0f || verticalAxisRaw != 0f)
+            {
+                _animator.SetFloat(Horizontal, horizontalAxisRaw);
+                _animator.SetFloat(Vertical, verticalAxisRaw);
+            }
 
-            // if (horizontalAxisRaw == 0 && verticalAxisRaw == 0)
-            // {
-            //     _animator.SetInteger(RunningFwd, 0);
-            //     _animator.SetInteger(RunningSideWay, 0);
-            // }
-            // else if (verticalAxisRaw == 0)
-            // {
-            //     if (horizontalAxisRaw > 0)
-            //     {
-            //         _animator.SetInteger(RunningFwd, 0);
-            //         _animator.SetInteger(RunningSideWay, 1);
-            //     }
-            //     else
-            //     {
-            //         _animator.SetInteger(RunningFwd, 0);
-            //         _animator.SetInteger(RunningSideWay, -1);
-            //     }
-            // }
-            // else if (verticalAxisRaw > 0)
-            // {
-            //     _animator.SetInteger(RunningFwd, 1);
-            //     _animator.SetInteger(RunningSideWay, 0);
-            // }
-            // else if (verticalAxisRaw < 0)
-            // {
-            //     _animator.SetInteger(RunningFwd, -1);
-            //     _animator.SetInteger(RunningSideWay, 0);
-            // }
+            _animator.SetBool(Shooting, leftClicked);
         }
     }
 }

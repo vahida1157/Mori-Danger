@@ -1,13 +1,14 @@
 using MLAPI;
 using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
+using Player;
 using UnityEngine;
 
 namespace Fire
 {
     public class ShootingControl : NetworkBehaviour
     {
-        private NetworkVariableBool _stopParticle = new NetworkVariableBool(new NetworkVariableSettings
+        private readonly NetworkVariableBool _stopParticle = new NetworkVariableBool(new NetworkVariableSettings
         {
             ReadPermission = NetworkVariablePermission.Everyone,
             WritePermission = NetworkVariablePermission.ServerOnly
@@ -16,23 +17,24 @@ namespace Fire
         [SerializeField] private float bulletForce;
         [SerializeField] private float shootingThreshold = 0.2f;
 
+        private PlayerHealth _playerHealth;
+
         private float _shotCounter;
         public Transform firePoint;
         private ParticleSystem _particleSystem;
-
-        private float _timeToChangeAnimation;
 
         public GameObject bulletPrefab;
 
         private void Start()
         {
+            _playerHealth = GetComponent<PlayerHealth>();
             _particleSystem = firePoint.GetComponentInChildren<ParticleSystem>();
             _particleSystem.Stop();
         }
 
-        void Update()
+        private void Update()
         {
-            if (IsLocalPlayer)
+            if (IsLocalPlayer && !_playerHealth.dead)
             {
                 if (Input.GetButton("Fire1"))
                 {

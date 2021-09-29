@@ -11,7 +11,7 @@ public class PrepareGame : NetworkBehaviour
         _mainCamera = Camera.main;
     }
 
-    public override void NetworkStart()
+    public void Start()
     {
         if (_mainCamera != null)
         {

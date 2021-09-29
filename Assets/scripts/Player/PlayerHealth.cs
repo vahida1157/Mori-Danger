@@ -10,7 +10,7 @@ namespace Player
     public class PlayerHealth : NetworkBehaviour
     {
         private const float MAXHealth = 300;
-        public bool dead = false;
+        public bool dead;
 
         private NetworkVariableFloat _currentHealth = new NetworkVariableFloat(new NetworkVariableSettings()
         {
