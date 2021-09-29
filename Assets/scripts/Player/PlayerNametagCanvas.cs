@@ -6,9 +6,8 @@ using UnityEngine.UI;
 
 namespace Player
 {
-    public class PlayerUsername : MonoBehaviour
+    public class PlayerNametagCanvas : MonoBehaviour
     {
-        [SerializeField] private Text playerUsername;
 
         private Camera _camera;
 
@@ -19,7 +18,6 @@ namespace Player
 
         void Update()
         {
-            playerUsername.text = MoriNetworkManager.username;
             var rotation = _camera.transform.rotation;
             transform.LookAt(transform.position + rotation * Vector3.forward,
                 rotation * Vector3.up);

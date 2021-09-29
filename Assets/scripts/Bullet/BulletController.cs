@@ -6,16 +6,17 @@ namespace Bullet
 {
     public class BulletController : MonoBehaviour
     {
-        [SerializeField] private float bulletDamage;
+        [SerializeField] public float bulletDamage;
         private void OnCollisionEnter(Collision other)
         {
-            var rigidBody = other.collider.GetComponentInParent<Rigidbody>();
-            if (rigidBody.tag.Equals("Player"))
-            {
-                rigidBody.GetComponent<PlayerHealth>().TakeDamage(bulletDamage);
-            }
-
-            Destroy(gameObject);
+            // Debug.Log("collided");
+            // var rigidBody = other.collider.GetComponentInParent<Rigidbody>();
+            // if (rigidBody.tag.Equals("Player"))
+            // {
+            //     rigidBody.GetComponent<PlayerHealth>().TakeDamage(bulletDamage);
+            // }
+            //
+            // GetComponent<NetworkObject>().Despawn(true);
         }
     }
 }
